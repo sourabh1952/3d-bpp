@@ -81,6 +81,7 @@ class Bin:
         height = 0
         ax = utils.get_pallet_plot(self.pallet_dims)
         for layer in self.layer_pool:
+            logger.info(f"print the layers one by one {layer}")
             ax = layer.plot(ax=ax, height=height)
             height += layer.height
         return ax
