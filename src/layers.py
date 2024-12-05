@@ -337,6 +337,8 @@ class LayerPool:
         """
         Sort layers in the pool by decreasing density
         """
+        logger.debug(f"two_dims is {two_dims}")
+        two_dims=False
         densities = self.get_densities(two_dims=two_dims)
         sorted_indices = utils.argsort(densities, reverse=True)
         self.layers = [self.layers[i] for i in sorted_indices]
