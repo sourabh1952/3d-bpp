@@ -119,6 +119,7 @@ class BinPool:
         # Sort layers in each bin by density
         for bin in self.bins:
             logger.debug(f"who call 1")
+            logger.debug(f"bin bin bin {bin}")
             bin.sort_by_densities(two_dims="bin sort 2")
 
     def _build(self, layer_pool):
