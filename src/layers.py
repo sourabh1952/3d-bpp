@@ -34,6 +34,13 @@ class Layer:
         return sum(s.volume for s in self.superitems_pool)
 
     @property
+    def weight(self):
+        """
+        Return the sum of the items volumes in the layer
+        """
+        return sum(s.weight for s in self.superitems_pool)
+
+    @property
     def area(self):
         """
         Return the sum of the items areas in the layer
@@ -104,7 +111,8 @@ class Layer:
         """
         
         return (
-            self.volume / (self.pallet_dims.area * self.height)
+            # self.volume / (self.pallet_dims.area * self.height)
+            self.weight
             if not two_dims
             else self.area / self.pallet_dims.area
         )
