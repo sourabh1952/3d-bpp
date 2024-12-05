@@ -313,7 +313,7 @@ def plot_product(ax, item_id, coords, dims):
             facecolors=np.random.rand(1, 3),
             linewidths=1,
             edgecolors="r",
-            alpha=0.45,
+            alpha=0.30,
         )
     )
     center = vertices.get_center()
@@ -322,7 +322,7 @@ def plot_product(ax, item_id, coords, dims):
         center.y,
         center.z,
         item_id,
-        size=10,
+        size=20,
         zorder=1,
         color="k",
     )
