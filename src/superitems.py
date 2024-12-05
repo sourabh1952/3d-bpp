@@ -726,7 +726,7 @@ class SuperitemPool:
         Divide superitems by width-depth ratio and vertically stack each group
         """
         assert tol >= 0.0, "Tolerance must be non-negative"
-        assert max_vstacked > 1, "Maximum number of stacked items must be greater than 1"
+        assert max_vstacked > 0, "Maximum number of stacked items must be greater than 1"
 
         def _gen_superitems_vertical_subgroup(superitems):
             """
