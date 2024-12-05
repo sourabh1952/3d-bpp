@@ -17,8 +17,8 @@ class Layer:
         self.superitems_pool = superitems_pool
         self.superitems_coords = superitems_coords
         self.pallet_dims = pallet_dims
-        logger.info(f"self values are {self}")
-        logger.info(f"superitems pools values are {superitems_pool}")
+        # logger.info(f"self values are {self}")
+        # logger.info(f"superitems pools values are {superitems_pool}")
     @property
     def height(self):
         """
@@ -145,6 +145,7 @@ class Layer:
                 utils.Dimension(self.pallet_dims.width, self.pallet_dims.depth, self.height)
             )
         items_coords = self.get_items_coords(z=height)
+        logger.info(f"item coordinates valuea are {items_coords}")
         items_dims = self.get_items_dims()
         for item_id in items_coords.keys():
             coords = items_coords[item_id]
