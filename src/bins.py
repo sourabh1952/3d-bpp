@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+from loguru import logger
 
 import utils, superitems, maxrects, layers
 from config import NUM_ULDS as num_ulds
@@ -69,6 +70,7 @@ class Bin:
         """
         Sort layers in the bin by decreasing density
         """
+        
         self.layer_pool.sort_by_densities(two_dims=two_dims)
 
     def plot(self):
@@ -104,16 +106,19 @@ class BinPool:
     def __init__(self, layer_pool, pallet_dims, singles_removed=None, two_dims=False, area_tol=1.0):
         self.layer_pool = layer_pool
         self.pallet_dims = pallet_dims
-
+        logger.debug(f"layer pool print from binpool {layer_pool}")
         # Build the bin pool and place uncovered items on top
         # or in a new bin
-        self.layer_pool.sort_by_densities(two_dims=two_dims)
+        self.layer_pool.sort_by_densities(two_dims="layer sort 1")
+        logger.debug(f"sorted layer pool print from binpool {layer_pool}")
+        
         self.bins = self._build(self.layer_pool)
         self._place_not_covered(singles_removed=singles_removed, area_tol=area_tol)
 
         # Sort layers in each bin by density
         for bin in self.bins:
-            bin.sort_by_densities(two_dims=two_dims)
+            logger.debug(f"who call 1")
+            bin.sort_by_densities(two_dims="bin sort 2")
 
     def _build(self, layer_pool):
         """
