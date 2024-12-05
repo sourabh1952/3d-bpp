@@ -17,7 +17,8 @@ class Layer:
         self.superitems_pool = superitems_pool
         self.superitems_coords = superitems_coords
         self.pallet_dims = pallet_dims
-
+        logger.info(f"self values are {self}")
+        logger.info(f"superitems pools values are {superitems_pool}")
     @property
     def height(self):
         """
@@ -101,6 +102,7 @@ class Layer:
         """
         Compute the 2D/3D density of the layer
         """
+        
         return (
             self.volume / (self.pallet_dims.area * self.height)
             if not two_dims
@@ -333,7 +335,7 @@ class LayerPool:
         """
         return [layer.get_density(two_dims=two_dims) for layer in self.layers]
 
-    def sort_by_densities(self, two_dims=False):
+    def sort_by_densities(self, two_dims):
         """
         Sort layers in the pool by decreasing density
         """
