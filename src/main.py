@@ -105,7 +105,7 @@ def cg(
     else:
         height_groups = [superitems_pool]
     # sourabh
-    logger.debug(f"height group is {height_groups}")
+    # logger.debug(f"height group is {height_groups}")
     # Iterate over each height group (or the entire superitems pool)
     # and call the column generation procedure for each one
     for i, spool in enumerate(height_groups):
@@ -133,9 +133,9 @@ def cg(
             return_only_last=return_only_last,
             enable_solver_output=enable_solver_output,
         )
-        logger.info(f"layer_pool values are {layer_pool}")
+        # logger.info(f"layer_pool values are {layer_pool}")
         cg_layer_pool.extend(layer_pool)
-    logger.info(f"cg_layer_pool values are {cg_layer_pool}")
+    # logger.info(f"cg_layer_pool values are {cg_layer_pool}")
     return cg_layer_pool
 
 
@@ -222,7 +222,7 @@ def main(
             max_coverage_all=filtering_max_coverage_all,
             max_coverage_single=filtering_max_coverage_single,
         )
-
+        logger.debug(f"filtered values are {layer_pool}")
         # Add only the filtered layers
         final_layer_pool.extend(layer_pool)
 
@@ -243,4 +243,5 @@ def main(
     bin_pool = bins.BinPool(
         final_layer_pool, config.PALLET_DIMS, singles_removed=set(all_singles_removed)
     )
+    logger.info(f"bin pool values are {bin_pool}")
     return bins.CompactBinPool(bin_pool)
