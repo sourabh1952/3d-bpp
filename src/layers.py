@@ -111,7 +111,16 @@ class Layer:
         """
         
         return (
-            # self.volume / (self.pallet_dims.area * self.height)
+            self.volume / (self.pallet_dims.area * self.height)
+            if not two_dims
+            else self.area / self.pallet_dims.area
+        )
+    def get_weight(self, two_dims=False):
+        """
+        Compute the 2D/3D weight of the layer
+        """
+        
+        return (
             self.weight
             if not two_dims
             else self.area / self.pallet_dims.area
@@ -343,6 +352,12 @@ class LayerPool:
         Compute the 2D/3D density of each layer in the pool
         """
         return [layer.get_density(two_dims=two_dims) for layer in self.layers]
+        
+    def get_weights(self, two_dims=False):
+        """
+        Compute the 2D/3D weight of each layer in the pool
+        """
+        return [layer.get_weight(two_dims=two_dims) for layer in self.layers]
 
     def sort_by_densities(self, two_dims):
         """
@@ -352,6 +367,17 @@ class LayerPool:
         two_dims=False
         densities = self.get_densities(two_dims=two_dims)
         sorted_indices = utils.argsort(densities, reverse=True)
+        self.layers = [self.layers[i] for i in sorted_indices]
+
+    def sort_by_weights(self, two_dims):
+        """
+        Sort layers in the pool by decreasing layer total weights
+        """
+        logger.debug(f"sort by weights is {two_dims}")
+        two_dims=False
+        # densities = self.get_densities(two_dims=two_dims)
+        weights = self.get_weights(two_dims=two_dims)
+        sorted_indices = utils.argsort(weights, reverse=True)
         self.layers = [self.layers[i] for i in sorted_indices]
 
     # def sort_by_weight
