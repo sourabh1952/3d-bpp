@@ -18,7 +18,7 @@ class Layer:
         self.superitems_coords = superitems_coords
         self.pallet_dims = pallet_dims
         # logger.info(f"self values are {self}")
-        # logger.info(f"superitems pools values are {superitems_pool}")
+        logger.info(f"superitems pools values are {superitems_pool}")
     @property
     def height(self):
         """
@@ -345,6 +345,8 @@ class LayerPool:
         densities = self.get_densities(two_dims=two_dims)
         sorted_indices = utils.argsort(densities, reverse=True)
         self.layers = [self.layers[i] for i in sorted_indices]
+
+    # def sort_by_weight
 
     def discard_by_densities(self, min_density=0.5, two_dims=False):
         """
