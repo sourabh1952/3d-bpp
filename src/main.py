@@ -172,6 +172,7 @@ def main(
 
     # Create the final superitems pool and a copy of the order
     final_layer_pool = layers.LayerPool(superitems.SuperitemPool(), config.PALLET_DIMS)
+    logger.info(f"final layer pool 1 : {final_layer_pool}")
     working_order = order.copy()
 
     # Iterate the specified number of times in order to reduce
