@@ -327,6 +327,13 @@ class BinPool:
             axs.append(ax)
         return axs
 
+    def get_coord_dim(self):
+        """
+        Return the coodinates and dimenstions
+        """
+        for bin in self.bins:
+            return bin.get_coord_dim()
+
     def to_dataframe(self):
         """
         Return a Pandas DataFrame representing bins inside the pool
