@@ -119,7 +119,7 @@ def cg(
             )
         else:
             warm_start_layer_pool = layers.LayerPool(spool, config.PALLET_DIMS, add_single=True)
-        logger.debug(f"warm_start_layer_pool values are {warm_start_layer_pool}")
+        # logger.debug(f"warm_start_layer_pool values are {warm_start_layer_pool}")
         # Call the column generation procedure
         layer_pool, _ = column_generation.column_generation(
             warm_start_layer_pool,
@@ -223,7 +223,7 @@ def main(
             max_coverage_all=filtering_max_coverage_all,
             max_coverage_single=filtering_max_coverage_single,
         )
-        logger.debug(f"filtered values are {layer_pool.__len__()}")
+        # logger.debug(f"filtered values are {layer_pool.__len__()}")
         if layer_pool.__len__() == 0:
             return -1
         # Add only the filtered layers
@@ -246,5 +246,5 @@ def main(
     bin_pool = bins.BinPool(
         final_layer_pool, config.PALLET_DIMS, singles_removed=set(all_singles_removed)
     )
-    logger.info(f"bin pool values are {bin_pool}")
+    # logger.info(f"bin pool values are {bin_pool}")
     return bins.CompactBinPool(bin_pool)
