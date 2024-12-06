@@ -48,8 +48,8 @@ class Bin:
         """
         Return the height remaining to fill up the bin
         """
-        logger.debug(f"self load {self.pallet_dims}")
-        return self.pallet_dims.load - self.weight
+        # logger.debug(f"self load {self.pallet_dims}")
+        return self.pallet_dims.weight - self.weight
 
     def add(self, layer):
         """
@@ -159,11 +159,12 @@ class BinPool:
         bins += [Bin(layer_pool.subset([0]), self.pallet_dims)]
         for i, layer in enumerate(layer_pool):
             # placed = False
-            logger.debug(f"layer value {layer} {i}")
-            logger.info(f"layer weight values are {layer.weight}")
+            # logger.debug(f"layer value {layer} {i}")
+            # logger.info(f"layer weight values are {layer.weight}")
+            layer_weight = layer.weight
             # Place the layer in an already opened bin
             for bin in bins:
-                if bin.height + layer.height <= self.pallet_dims.height:
+                if bin.height + layer.height <= self.pallet_dims.height and bin.remaining_weight >= layer_weight:
                     bin.add(layer)
                     logger.info(f"remaining weight of this bin is {bin.remaining_weight}")
                     # placed = True
