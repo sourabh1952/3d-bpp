@@ -159,7 +159,7 @@ class BinPool:
     def __init__(self, layer_pool, pallet_dims, singles_removed=None, two_dims=False, area_tol=1.0):
         self.layer_pool = layer_pool
         self.pallet_dims = pallet_dims
-        # logger.debug(f"layer pool print from binpool {layer_pool}")
+        logger.debug(f"layer pool print from binpool {layer_pool}")
         # Build the bin pool and place uncovered items on top
         # or in a new bin
         self.layer_pool.sort_by_densities(two_dims="layer sort 1")
