@@ -223,7 +223,9 @@ def main(
             max_coverage_all=filtering_max_coverage_all,
             max_coverage_single=filtering_max_coverage_single,
         )
-        logger.debug(f"filtered values are {layer_pool}")
+        logger.debug(f"filtered values are {layer_pool.__len__()}")
+        if layer_pool.__len__() == 0:
+            return -1
         # Add only the filtered layers
         final_layer_pool.extend(layer_pool)
 
