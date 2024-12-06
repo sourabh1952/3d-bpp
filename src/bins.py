@@ -155,22 +155,23 @@ class BinPool:
         the given layers
         """
         bins = []
+        bins += [Bin(layer_pool.subset([i]), self.pallet_dims)]
         for i, layer in enumerate(layer_pool):
-            placed = False
+            # placed = False
             logger.debug(f"layer value {layer}")
             logger.info(f"layer weight values are {layer.weight}")
             # Place the layer in an already opened bin
             for bin in bins:
                 if bin.height + layer.height <= self.pallet_dims.height:
                     bin.add(layer)
-                    logger.info(f"remaining weight of this bin is {remaining_weight}")
-                    placed = True
+                    logger.info(f"remaining weight of this bin is {bin.remaining_weight}")
+                    # placed = True
 
             # Open a new bin
-            if not placed:
-                if (len(bins) == num_ulds):
-                    return bins
-                bins += [Bin(layer_pool.subset([i]), self.pallet_dims)]
+            # if not placed:
+            #     if (len(bins) == num_ulds):
+            #         return bins
+            #     bins += [Bin(layer_pool.subset([i]), self.pallet_dims)]
 
         return bins
 
