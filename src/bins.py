@@ -159,7 +159,7 @@ class BinPool:
     def __init__(self, layer_pool, pallet_dims, singles_removed=None, two_dims=False, area_tol=1.0):
         self.layer_pool = layer_pool
         self.pallet_dims = pallet_dims
-        logger.debug(f"layer pool print from binpool {layer_pool}")
+        # logger.debug(f"layer pool print from binpool {layer_pool}")
         # Build the bin pool and place uncovered items on top
         # or in a new bin
         self.layer_pool.sort_by_densities(two_dims="layer sort 1")
@@ -184,11 +184,11 @@ class BinPool:
         for i, layer in enumerate(layer_pool):
             # placed = False
             # logger.debug(f"layer value {layer} {i}")
-            logger.info(f"layer weight values are {layer.weight}")
+            # logger.info(f"layer weight values are {layer.weight}")
             layer_weight = layer.weight
             # Place the layer in an already opened bin
             for bin in bins:
-                logger.info(f"remaining weight of this bin is {bin.remaining_weight}")
+                # logger.info(f"remaining weight of this bin is {bin.remaining_weight}")
                 if bin.height + layer.height <= self.pallet_dims.height and bin.remaining_weight >= layer_weight:
                     bin.add(layer)
                     # placed = True
@@ -459,5 +459,5 @@ class CompactBinPool:
         # df=[]
         # for i,bin in enumerate(self.compact_bins):
         #     logger.info(f"bin val {bin} {i}")
-        logger.info(f"bin val {self._original_bin_pool}")
+        # logger.info(f"bin val {self._original_bin_pool}")
         return self._original_bin_pool.get_coord_dim()
