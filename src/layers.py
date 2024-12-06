@@ -170,6 +170,36 @@ class Layer:
             ax = utils.plot_product(ax, item_id, coords, dims)
         return ax
 
+    def get_coord_dim(self, ax=None, height=0):
+    """
+    Get the coordinates and dimensions of items in the current layer 
+    having a maximum height given by the height of the layer.
+    
+    Returns:
+        dict: A dictionary where keys are item IDs and values are dictionaries 
+              containing coordinates (x, y, z) and dimensions (l, w, h).
+    """
+    # Retrieve items' coordinates and dimensions
+    items_coords = self.get_items_coords(z=height) 
+    items_dims = self.get_items_dims() 
+    
+    # Prepare the result dictionary
+    result = {}
+
+    # Iterate over item IDs and construct the output
+    for item_id in items_coords.keys():
+        coords = items_coords[item_id]  # (x, y, z)
+        dims = items_dims[item_id]  # (l, w, h)
+        
+        # Add to the result dictionary
+        result[item_id] = {
+            "coordinates": {"x": coords[0], "y": coords[1], "z": coords[2]},
+            "dimensions": {"l": dims[0], "w": dims[1], "h": dims[2]}
+        }
+      
+    return result
+
+
     def to_dataframe(self, z=0):
         """
         Convert the current layer to a Pandas DataFrame
