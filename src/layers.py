@@ -195,7 +195,7 @@ class Layer:
             # Add to the result dictionary
             result[item_id] = {
                 "coordinates": {"x": coords.x, "y": coords.y, "z": coords.z},  
-                "dimensions": {"l": dims.l, "w": dims.w, "h": dims.d}
+                "dimensions": {"l": dims.depth, "w": dims.width, "h": dims.height}
             }
           
         return result
