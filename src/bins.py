@@ -225,11 +225,7 @@ class BinPool:
             """
             to_place = []
             for s in superitems_list:
-                last_layer = working_bin.layer_pool[-1]  # Get the last layer
-                if last_layer == None:
-                    break
-                # last_layer_area = working_bin.layer_pool[-1].area
-                last_layer_area = last_layer.area if last_layer else 0  # Handle None case
+                last_layer_area = working_bin.layer_pool[-1].area
                 max_area = np.clip(area_tol * last_layer_area, 0, self.pallet_dims.area)
                 area = sum(s.area for s in to_place)
                 if area < max_area and s.height < working_bin.remaining_height:
