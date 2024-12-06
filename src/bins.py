@@ -109,7 +109,7 @@ class Bin:
         height = 0
         ax = utils.get_pallet_plot(self.pallet_dims)
         for layer in self.layer_pool:
-            logger.info(f"print the layers one by one {layer}")
+            # logger.info(f"print the layers one by one {layer}")
             ax = layer.plot(ax=ax, height=height)
             height += layer.height
         return ax
@@ -135,19 +135,19 @@ class BinPool:
     def __init__(self, layer_pool, pallet_dims, singles_removed=None, two_dims=False, area_tol=1.0):
         self.layer_pool = layer_pool
         self.pallet_dims = pallet_dims
-        logger.debug(f"layer pool print from binpool {layer_pool}")
+        # logger.debug(f"layer pool print from binpool {layer_pool}")
         # Build the bin pool and place uncovered items on top
         # or in a new bin
         self.layer_pool.sort_by_densities(two_dims="layer sort 1")
-        logger.debug(f"sorted layer pool print from binpool {layer_pool}")
+        # logger.debug(f"sorted layer pool print from binpool {layer_pool}")
         
         self.bins = self._build(self.layer_pool)
         self._place_not_covered(singles_removed=singles_removed, area_tol=area_tol)
 
         # Sort layers in each bin by density
         for bin in self.bins:
-            logger.debug(f"who call 1")
-            logger.debug(f"bin bin bin {bin}")
+            # logger.debug(f"who call 1")
+            # logger.debug(f"bin bin bin {bin}")
             bin.sort_by_weights(two_dims="bin sort 2")
 
     def _build(self, layer_pool):
@@ -166,7 +166,7 @@ class BinPool:
             for bin in bins:
                 if bin.height + layer.height <= self.pallet_dims.height and bin.remaining_weight >= layer_weight:
                     bin.add(layer)
-                    logger.info(f"remaining weight of this bin is {bin.remaining_weight}")
+                    # logger.info(f"remaining weight of this bin is {bin.remaining_weight}")
                     # placed = True
 
             # Open a new bin
@@ -420,3 +420,11 @@ class CompactBinPool:
             df["bin"] = [i] * len(df)
             dfs += [df]
         return pd.concat(dfs, axis=0)
+        
+    def get_coordi_dim(self):
+        """
+        Return a Pandas Dataframe of the item coordinates and dimension of the item packed inside a bin
+        """
+        df=[]
+        for i,bin in self.compact_bins:
+            logger.info(f"bin val {bin} {i}")
