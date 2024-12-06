@@ -567,6 +567,7 @@ class LayerPool:
         new_pool = new_pool.remove_empty_layers()
         logger.debug(f"Remaining {len(new_pool)} layers after removing the empty ones")
         new_pool.sort_by_densities(two_dims=two_dims)
+        logger.debug(f"new pool value {new_pool}")
         return new_pool
 
     def item_coverage(self):
