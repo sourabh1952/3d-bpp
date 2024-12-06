@@ -690,6 +690,7 @@ class LayerPool:
         return layer in self.layers
 
     def __getitem__(self, i):
+        logger.info(f"value of index {i}")
         return self.layers[i]
 
     def __setitem__(self, i, e):
