@@ -164,6 +164,7 @@ class Layer:
         items_coords = self.get_items_coords(z=height)
         logger.info(f"item coordinates valuea are {items_coords}")
         items_dims = self.get_items_dims()
+        logger.info(f"item dimension valuea are {items_dims}")
         for item_id in items_coords.keys():
             coords = items_coords[item_id]
             dims = items_dims[item_id]
@@ -193,8 +194,8 @@ class Layer:
             
             # Add to the result dictionary
             result[item_id] = {
-                "coordinates": {"x": coords[0], "y": coords[1], "z": coords[2]},
-                "dimensions": {"l": dims[0], "w": dims[1], "h": dims[2]}
+                "coordinates": {"x": coords.x, "y": coords.y, "z": coords.z},  
+                "dimensions": {"l": dims.l, "w": dims.w, "h": dims.d}
             }
           
         return result
