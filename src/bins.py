@@ -155,10 +155,10 @@ class BinPool:
         the given layers
         """
         bins = []
-        bins += [Bin(layer_pool.subset([i]), self.pallet_dims)]
+        bins += [Bin(layer_pool.subset([0]), self.pallet_dims)]
         for i, layer in enumerate(layer_pool):
             # placed = False
-            logger.debug(f"layer value {layer}")
+            logger.debug(f"layer value {layer} {i}")
             logger.info(f"layer weight values are {layer.weight}")
             # Place the layer in an already opened bin
             for bin in bins:
