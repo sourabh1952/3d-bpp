@@ -120,7 +120,7 @@ class BinPool:
         for bin in self.bins:
             logger.debug(f"who call 1")
             logger.debug(f"bin bin bin {bin}")
-            bin.sort_by_densities(two_dims="bin sort 2")
+            bin.sort_by_weights(two_dims="bin sort 2")
 
     def _build(self, layer_pool):
         """
@@ -130,7 +130,7 @@ class BinPool:
         bins = []
         for i, layer in enumerate(layer_pool):
             placed = False
-
+            logger.debug(f"layer value {layer}")
             # Place the layer in an already opened bin
             for bin in bins:
                 if bin.height + layer.height <= self.pallet_dims.height:
