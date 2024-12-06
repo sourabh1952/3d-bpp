@@ -18,7 +18,7 @@ class Layer:
         self.superitems_coords = superitems_coords
         self.pallet_dims = pallet_dims
         # logger.info(f"self values are {self}")
-        logger.info(f"superitems pools values are {superitems_pool}")
+        # logger.info(f"superitems pools values are {superitems_pool}")
     @property
     def height(self):
         """
@@ -162,9 +162,9 @@ class Layer:
                 utils.Dimension(self.pallet_dims.width, self.pallet_dims.depth, self.height)
             )
         items_coords = self.get_items_coords(z=height)
-        logger.info(f"item coordinates valuea are {items_coords}")
+        # logger.info(f"item coordinates valuea are {items_coords}")
         items_dims = self.get_items_dims()
-        logger.info(f"item dimension valuea are {items_dims}")
+        # logger.info(f"item dimension valuea are {items_dims}")
         for item_id in items_coords.keys():
             coords = items_coords[item_id]
             dims = items_dims[item_id]
@@ -394,7 +394,7 @@ class LayerPool:
         """
         Sort layers in the pool by decreasing density
         """
-        logger.debug(f"two_dims is {two_dims}")
+        # logger.debug(f"two_dims is {two_dims}")
         two_dims=False
         densities = self.get_densities(two_dims=two_dims)
         sorted_indices = utils.argsort(densities, reverse=True)
@@ -404,7 +404,7 @@ class LayerPool:
         """
         Sort layers in the pool by decreasing layer total weights
         """
-        logger.debug(f"sort by weights is {two_dims}")
+        # logger.debug(f"sort by weights is {two_dims}")
         two_dims=False
         # densities = self.get_densities(two_dims=two_dims)
         weights = self.get_weights(two_dims=two_dims)
