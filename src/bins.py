@@ -114,6 +114,30 @@ class Bin:
             height += layer.height
         return ax
 
+    def get_coord_dim(self):
+        """
+        Get the coordinates and dimensions of the items placed in the current bin.
+    
+        Returns:
+            dict: A dictionary where keys are item IDs and values are dictionaries
+                  containing coordinates (x, y, z) and dimensions (l, w, h) from all layers.
+        """
+        height = 0
+        final_dict = {}  # Stores the concatenated results from all layers
+        
+        # Loop through each layer in the layer pool
+        for layer in self.layer_pool:
+            # Get the dictionary from the layer
+            layer_dict = layer.get_coord_dim(ax=None, height=height)
+    
+            # Update final_dict with the current layer's data
+            final_dict.update(layer_dict)
+    
+            # Increment height by the layer's height
+            height += layer.height
+    
+        return final_dict
+
     def to_dataframe(self):
         """
         Return a Pandas DataFrame representation of the bin
@@ -426,5 +450,6 @@ class CompactBinPool:
         Return a Pandas Dataframe of the item coordinates and dimension of the item packed inside a bin
         """
         df=[]
-        for i,bin in self.compact_bins:
+        for i,bin in enumerate(self.compact_bins):
             logger.info(f"bin val {bin} {i}")
+            return bin.get_coord_dim()
