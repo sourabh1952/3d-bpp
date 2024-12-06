@@ -615,9 +615,9 @@ class SuperitemPool:
         """
         singles_removed = []
         items = Item.from_dataframe(order)
-        logger.info(f"items print  : {items}")
+        # logger.info(f"items print  : {items}")
         superitems = cls._gen_single_items_superitems(items)
-        logger.debug(f"superitems print 1 : {superitems}")
+        # logger.debug(f"superitems print 1 : {superitems}")
         if only_single:
             logger.info("Generating superitems with only single items")
             return superitems, singles_removed
@@ -625,10 +625,10 @@ class SuperitemPool:
             logger.info(f"Generating horizontal superitems of type '{horizontal_type}'")
             superitems += cls._gen_superitems_horizontal(superitems, htype=horizontal_type)
             superitems, singles_removed = cls._drop_singles_in_horizontal(superitems)
-        logger.debug(f"superitems print 2 : {superitems}")
+        # logger.debug(f"superitems print 2 : {superitems}")
         logger.info(f"Generating vertical superitems with maximum stacking of {max_vstacked}")
         superitems += cls._gen_superitems_vertical(superitems, max_vstacked)
-        logger.debug(f"superitems print 3 : {superitems}")
+        # logger.debug(f"superitems print 3 : {superitems}")
         logger.info(f"Generated {len(superitems)} superitems")
         superitems = cls._filter_superitems(superitems, pallet_dims)
         logger.info(f"Remaining superitems after filtering by pallet dimensions: {len(superitems)}")
