@@ -60,6 +60,12 @@ class Bin:
         """
         return self.layer_pool.get_densities(two_dims=two_dims)
 
+    # def get_layer_weights(self, two_dims=False):
+    #     """
+    #     Return the 2D/3D weights of each layer in the bin
+    #     """
+    #     return self.layer_pool.get_densities(two_dims=two_dims)
+
     def get_density(self):
         """
         Return the density of the bin
@@ -72,6 +78,13 @@ class Bin:
         """
         
         self.layer_pool.sort_by_densities(two_dims=two_dims)
+
+     def sort_by_weights(self, two_dims=False):
+        """
+        Sort layers in the bin by decreasing weights
+        """
+        
+        self.layer_pool.sort_by_weights(two_dims=two_dims)
 
     def plot(self):
         """
