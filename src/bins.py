@@ -78,13 +78,13 @@ class Bin:
         """
         
         self.layer_pool.sort_by_densities(two_dims=two_dims)
-
-     def sort_by_weights(self, two_dims=False):
+    def sort_by_weights(self, two_dims=False):
         """
-        Sort layers in the bin by decreasing weights
+        Sort layers in the bin by decreasing density
         """
         
         self.layer_pool.sort_by_weights(two_dims=two_dims)
+
 
     def plot(self):
         """
