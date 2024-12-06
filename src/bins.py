@@ -460,4 +460,4 @@ class CompactBinPool:
         # for i,bin in enumerate(self.compact_bins):
         #     logger.info(f"bin val {bin} {i}")
         logger.info(f"bin val {bin_pool}")
-        return bin_pool.get_coord_dim()
+        return self._original_bin_pool.get_coord_dim()
