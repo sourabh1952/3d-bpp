@@ -48,6 +48,7 @@ class Bin:
         """
         Return the height remaining to fill up the bin
         """
+        logger.debug(f"self load {self.pallet_dims}")
         return self.pallet_dims.load - self.weight
 
     def add(self, layer):
