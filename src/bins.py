@@ -180,9 +180,9 @@ class BinPool:
         the given layers
         """
         bins = []
-        bins += [Bin(layer_pool.subset([0]), self.pallet_dims)]
+        # bins += [Bin(layer_pool.subset([0]), self.pallet_dims)]
         for i, layer in enumerate(layer_pool):
-            # placed = False
+            placed = False
             # logger.debug(f"layer value {layer} {i}")
             # logger.info(f"layer weight values are {layer.weight}")
             layer_weight = layer.weight
@@ -191,13 +191,13 @@ class BinPool:
                 # logger.info(f"remaining weight of this bin is {bin.remaining_weight}")
                 if bin.height + layer.height <= self.pallet_dims.height and bin.remaining_weight >= layer_weight:
                     bin.add(layer)
-                    # placed = True
+                    placed = True
 
             # Open a new bin
-            # if not placed:
-            #     if (len(bins) == num_ulds):
-            #         return bins
-            #     bins += [Bin(layer_pool.subset([i]), self.pallet_dims)]
+            if not placed:
+                if (len(bins) == num_ulds):
+                    return bins
+                bins += [Bin(layer_pool.subset([i]), self.pallet_dims)]
 
         return bins
 
